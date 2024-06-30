@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Shopping Cart</title>
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+<style>
+    .cart-container {
+        max-width: 1000px; /* Увеличен размер блока корзины */
+        margin: 0 auto; /* Центрирование блока корзины */
+        padding: 30px; /* Увеличены отступы внутри блока */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin-top: 50px; /* Отступ сверху для блока корзины */
+    }
+    .cart-container h1 {
+        font-size: 36px; /* Увеличен размер шрифта заголовка */
+        margin-bottom: 20px; /* Увеличен отступ под заголовком */
+    }
+    .cart-container table {
+        margin-bottom: 30px; /* Увеличен отступ под таблицей */
+    }
+    .cart-container .btn-success {
+        font-size: 20px; /* Увеличен размер шрифта кнопки */
+        padding: 15px 25px; /* Увеличен размер кнопки */
+    }
+    .cart-container .btn-danger {
+        font-size: 14px; /* Увеличен размер шрифта кнопки удаления */
+        padding: 5px 10px; /* Увеличен размер кнопки удаления */
+    }
+</style>
+
+<body>
+<div class="container cart-container">
+    <h1 class="mt-5">Shopping Cart</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td><img src="{{ url_for('static', filename=item.photo) }}" alt="{{ item.title }}" width="50"></td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.price }} $</td>
+                <td>
+                    <form action="{{ url_for('remove_from_cart', item_id=item.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total: {{ total_price }} $</h3>
+    <form action="{{ url_for('checkout') }}" method="POST">
+        <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+    </form>
+</div>
+</body>
+{% endblock %}

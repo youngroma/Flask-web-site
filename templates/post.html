@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ item.title }}</title>
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+<style>
+    .product-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin-top: 50px; /* Добавлен отступ сверху */
+    }
+    .product-content {
+        display: flex;
+        max-width: 1000px; /* Увеличен размер блока товара */
+        width: 100%;
+        border: 0px solid #ddd;
+        padding: 30px; /* Увеличены отступы внутри блока */
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .product-images {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-right: 20px; /* Отступ справа для фото */
+    }
+    .product-images img {
+        max-width: 100%;
+        margin-bottom: 15px; /* Увеличен отступ между изображениями */
+    }
+    .product-details {
+        width: 50%;
+        padding-left: 20px; /* Отступ слева для деталей */
+    }
+    .product-details h1 {
+        font-size: 28px; /* Увеличен размер шрифта заголовка */
+        margin-bottom: 15px; /* Увеличен отступ под заголовком */
+    }
+    .product-details p {
+        margin-bottom: 15px; /* Увеличен отступ под описанием */
+    }
+    .product-details .price {
+        font-size: 24px; /* Увеличен размер шрифта цены */
+        color: #b12704;
+        margin-bottom: 25px; /* Увеличен отступ под ценой */
+    }
+    .product-details .btn-primary {
+        font-size: 18px; /* Увеличен размер шрифта кнопки */
+        padding: 12px 20px; /* Увеличен размер кнопки */
+    }
+</style>
+
+<div class="container product-container">
+    <div class="product-content">
+        <div class="product-images">
+            <img src="{{ url_for('static', filename=item.photo) }}" alt="{{ item.title }}" class="motion-reduce" loading="lazy" width="1080" height="1350">
+        </div>
+        <div class="product-details">
+            <h1>{{ item.title }}</h1>
+            <p>{{ item.description }}</p>
+            <div class="price">{{ item.price }} $</div>
+            <form action="{{ url_for('add_to_cart', item_id=item.id) }}" method="POST">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

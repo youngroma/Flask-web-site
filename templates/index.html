@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>My Online Shop</title>
+{% endblock %}
+
+{% block body %}
+
+
+<!-- END sections: header-group -->
+
+<main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+  <section id="shopify-section-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f" class="shopify-section section">
+    <link href="//dulse1000.com/cdn/shop/t/17/assets/component-card.css?v=120027167547816435861683570212" rel="stylesheet" type="text/css" media="all">
+    <link href="//dulse1000.com/cdn/shop/t/17/assets/component-price.css?v=65402837579211014041683570212" rel="stylesheet" type="text/css" media="all">
+    <link href="//dulse1000.com/cdn/shop/t/17/assets/component-rte.css?v=73443491922477598101683570212" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="//dulse1000.com/cdn/shop/t/17/assets/component-slider.css?v=111384418465749404671683570212" media="all" onload="this.media='all'">
+    <link rel="stylesheet" href="//dulse1000.com/cdn/shop/t/17/assets/template-collection.css?v=145944865380958730931683570212" media="all" onload="this.media='all'">
+    <noscript><link href="//dulse1000.com/cdn/shop/t/17/assets/component-slider.css?v=111384418465749404671683570212" rel="stylesheet" type="text/css" media="all" /></noscript>
+    <noscript><link href="//dulse1000.com/cdn/shop/t/17/assets/template-collection.css?v=145944865380958730931683570212" rel="stylesheet" type="text/css" media="all" /></noscript>
+    <style data-shopify="">
+      .section-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-padding {
+        padding-top: 0px;
+        padding-bottom: 24px;
+      }
+
+      @media screen and (min-width: 750px) {
+        .section-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-padding {
+          padding-top: 0px;
+          padding-bottom: 32px;
+        }
+      }
+    </style>
+    <div class="color-background-1 isolate gradient">
+      <div class="collection section-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-padding">
+        <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
+          <h2 class="title h2">‎</h2>
+        </div>
+
+        <slider-component class="slider-mobile-gutter page-width page-width-desktop">
+          <div class="sort-options mb-4">
+    <form method="GET" action="{{ url_for('index') }}" class="form-inline">
+      <label class="my-1 mr-2" for="sort_by">Sort by:</label>
+      <select name="sort_by" id="sort_by" class="custom-select my-1 mr-sm-2" onchange="this.form.submit()">
+        <option value="">Select...</option>
+        <option value="price" {% if request.args.get('sort_by') == 'price' %}selected{% endif %}>Price</option>
+        <option value="title" {% if request.args.get('sort_by') == 'title' %}selected{% endif %}>Title</option>
+        <option value="date" {% if request.args.get('sort_by') == 'date' %}selected{% endif %}>Date</option>
+      </select>
+    </form>
+  </div>
+          <ul id="Slider-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f" class="grid product-grid contains-card contains-card--product contains-card--standard grid--4-col-desktop grid--2-col-tablet-down" role="list" aria-label="Slider">
+            {% for el in data %}
+            <li id="Slide-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}" class="grid__item">
+              <link href="//dulse1000.com/cdn/shop/t/17/assets/component-rating.css?v=24573085263941240431683570212" rel="stylesheet" type="text/css" media="all">
+              <div class="card-wrapper product-card-wrapper underline-links-hover">
+                <div class="card card--standard card--media" style="--ratio-percent: 125.0%;">
+                  <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: 125.0%;">
+                    <div class="card__media">
+                      <div class="media media--transparent media--hover-effect">
+                        <img srcset="{{ el.photo }}" alt="{{ el.title }}" class="motion-reduce" loading="lazy" width="1080" height="1350">
+                      </div>
+                    </div>
+                    <div class="card__content">
+                      <div class="card__information">
+                        <h3 class="card__heading">
+                          <a href="{{ url_for('show_post', id_post=el.id) }}" id="StandardCardNoMediaLink-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}" class="full-unstyled-link" aria-labelledby="StandardCardNoMediaLink-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }} NoMediaStandardBadge-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}">
+                            {{ el.title }}
+                          </a>
+                        </h3>
+                      </div>
+                      <div class="card__badge bottom left">
+                        <span id="NoMediaStandardBadge-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}" class="badge badge--bottom-left color-inverse">Sold out</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card__content">
+                    <div class="card__information">
+                      <h3 class="card__heading h5" id="title-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}">
+                        <a href="{{ url_for('show_post', id_post=el.id) }}" id="CardLink-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}" class="full-unstyled-link" aria-labelledby="CardLink-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }} Badge-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}">
+                          {{ el.title }}
+                        </a>
+                      </h3>
+                      <div class="card-information">
+                        <span class="caption-large light"></span>
+                        <div class="price price--sold-out">
+                          <div class="price__container">
+                            <div class="price__regular">
+                              <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                              <span class="price-item price-item--regular">
+                                {{ el.price }}
+                              </span>
+                            </div>
+                            <div class="price__sale">
+                              <span class="visually-hidden visually-hidden--inline">Regular price</span>
+                              <span>
+                                <s class="price-item price-item--regular"></s>
+                              </span>
+                              <span class="visually-hidden visually-hidden--inline">Sale price</span>
+                              <span class="price-item price-item--sale price-item--last">
+                                {{ el.price }}
+                              </span>
+                            </div>
+                            <small class="unit-price caption hidden">
+                              <span class="visually-hidden">Unit price</span>
+                              <span class="price-item price-item--last">
+                                <span></span>
+                                <span aria-hidden="true">/</span>
+                                <span class="visually-hidden">&nbsp;per&nbsp;</span>
+                                <span></span>
+                              </span>
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card__badge bottom left">
+                        <span id="Badge-template--16163676160208__e515ffde-f311-4061-8509-59047c31058f-{{ loop.index }}" class="badge badge--bottom-left color-inverse">Sold out</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </slider-component>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
