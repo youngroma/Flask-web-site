@@ -18,8 +18,7 @@ def upload_file():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
 
-            # Сохранение пути к файлу относительно папки static
-            photo_path = os.path.join('img/', filename)
+            photo_path = os.path.join('static/img/', filename)
 
             new_item = Item(title=title, price=price, isActive=is_active, photo=photo_path)
             db.session.add(new_item)
